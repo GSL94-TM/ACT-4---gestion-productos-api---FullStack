@@ -1,5 +1,7 @@
 # API de Gestión de Productos (CRUD + JWT + MongoDB)
 
+**URL en producción:** https://act-4-gestion-productos-api-full-st.vercel.app
+
 Aplicación web desarrollada con **Node.js**, **Express.js**, **MongoDB (Mongoose)**, autenticación mediante **JWT**, vista estática de inicio de sesión en **HTML/CSS/JS**, pruebas unitarias automatizadas con **Jest** y pipeline **CI/CD** con **GitHub Actions** desplegado en **Vercel**.
 
 ## Requisitos previos
