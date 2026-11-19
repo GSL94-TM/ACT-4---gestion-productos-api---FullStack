@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión | Gestión de Productos</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="auth-container">
+    <section class="auth-card" id="auth-section">
+      <div class="auth-header">
+        <span class="badge">Sistema CRUD · JWT</span>
+        <h1>Gestión de Productos</h1>
+        <p>Accede con tu cuenta para administrar el catálogo</p>
+      </div>
+
+      <div class="tabs">
+        <button type="button" class="tab-btn active" id="tab-login">Iniciar Sesión</button>
+        <button type="button" class="tab-btn" id="tab-register">Registrarse</button>
+      </div>
+
+      <div id="alert-box" class="alert hidden" role="alert"></div>
+
+      <!--Formulario de Login-->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" placeholder="ejemplo@correo.com" required />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" placeholder="••••••••" minlength="6" required />
+        </div>
+        <button type="submit" class="btn-primary">Entrar</button>
+      </form>
+
+      <!--Formulario de Registro-->
+      <form id="register-form" class="auth-form hidden">
+        <div class="form-group">
+          <label for="register-name">Nombre completo</label>
+          <input type="text" id="register-name" placeholder="Tu nombre" minlength="2" required />
+        </div>
+        <div class="form-group">
+          <label for="register-email">Correo electrónico</label>
+          <input type="email" id="register-email" placeholder="ejemplo@correo.com" required />
+        </div>
+        <div class="form-group">
+          <label for="register-password">Contraseña (mín. 6 caracteres)</label>
+          <input type="password" id="register-password" placeholder="••••••••" minlength="6" required />
+        </div>
+        <button type="submit" class="btn-primary">Crear cuenta</button>
+      </form>
+    </section>
+
+    <!--Panel de sesión activa-->
+    <section class="auth-card hidden" id="session-section">
+      <div class="auth-header">
+        <span class="badge badge-success">Sesión Activa</span>
+        <h1>Bienvenido, <span id="user-name"></span></h1>
+        <p id="user-email"></p>
+      </div>
+
+      <div class="token-box">
+        <label for="jwt-display">Token JWT asignado (Bearer):</label>
+        <textarea id="jwt-display" rows="3" readonly></textarea>
+        <button type="button" id="copy-token-btn" class="btn-secondary">Copiar Token</button>
+      </div>
+
+      <button type="button" id="logout-btn" class="btn-danger">Cerrar Sesión</button>
+    </section>
+  </main>
+
+  <script src="/login.js"></script>
+</body>
+</html>

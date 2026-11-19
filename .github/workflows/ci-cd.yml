@@ -1,0 +1,46 @@
+name: CI/CD - Pruebas Jest y Despliegue en Vercel
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Integración Continua (Pruebas Unitarias)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas unitarias con Jest
+        run: npm test
+
+  deploy:
+    name: Despliegue Continuo (Vercel)
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Disparar despliegue automático en Vercel
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK" ]; then
+            echo "Error: falta configurar el secreto VERCEL_DEPLOY_HOOK en GitHub."
+            exit 1
+          fi
+          curl -f -X POST "$VERCEL_DEPLOY_HOOK"
+          echo "Despliegue en Vercel activado correctamente."
